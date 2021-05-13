@@ -1,10 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './ProjectCard.css';
 
 const ProjectCard = ({project}) => {
     return (
-            <div className="col-md-4 mt-5">
+            <div className="col-md-4">
             <div className={`d-flex justify-content-center`}>
                 <div class="card" style={{width: '18rem'}}>
                     <div class="card-body">

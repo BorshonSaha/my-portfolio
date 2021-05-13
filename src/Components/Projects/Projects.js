@@ -1,6 +1,10 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
 import ProjectCard from '../ProjectCard/ProjectCard';
+import lottie from 'lottie-web';
+import { useEffect, useRef } from 'react';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
 const projects = [
     {
@@ -34,14 +38,39 @@ const projects = [
 ]
 
 const Projects = () => {
+
+    const container = useRef(null);
+
+    useEffect(() => {
+        lottie.loadAnimation({
+          container: container.current, // the dom element that will contain the animation
+          renderer: 'svg',
+          loop: true,
+          autoplay: true,
+          animationData: require('../../Animations/projects.json') // the path to the animation json
+        })
+      }, [])
+
     return (
-        <div className="mt-5 App">
-            <h1>My Projects</h1>
-            <div className="row">
+        <div>
+            <Header></Header>
+            <Container>
+            <h1 className="mt-5 App">My Projects</h1>
+            <section className="row d-flex align-items-center">
+                <div className="col-md-6">
+                    <div className="contactMe" ref={container}></div>
+                </div>
+                <div className="col-md-6">
+                    <p>The technologies that I know, based on that I developed some projects. Here some of these are.</p>
+                </div>
+            </section>
+            <div className="row App">
                 {
                     projects.map(project => <ProjectCard project={project}></ProjectCard>)
                 }
             </div>
+            </Container>
+            <Footer></Footer>
         </div>
     );
 };
