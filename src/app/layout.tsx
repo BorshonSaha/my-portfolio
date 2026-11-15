@@ -13,7 +13,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: { default: `${profile.name} – Software Developer`, template: `%s | ${profile.name}` },
   description:
-    "Backend and web engineer building REST APIs, microservices and full-stack applications with Java, Spring Boot, TypeScript and Next.js.",
+    "Backend and web developer building REST APIs and full-stack applications with Java, Spring Boot, TypeScript and Next.js.",
   openGraph: { title: `${profile.name} – Software Developer`, type: "website" },
 };
 
