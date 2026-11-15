@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+/* Fonts are inlined; the accent is NOT inline so it can change per theme. */
+@theme inline {
+  --font-display: "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@theme {
+  --color-accent: #7cc4ff;
+  --color-accent-dim: #3b6f99;
+}
+
+/*
+ * Light theme = the zinc scale mirrored (50<->950, 100<->900, ...), so every
+ * existing `bg-zinc-*` / `text-zinc-*` / `border-zinc-*` class flips with no
+ * component changes. Dark is the default (set in layout.tsx).
+ */
+html[data-theme="light"] {
+  color-scheme: light;
+  --color-zinc-950: #fafafa;
+  --color-zinc-900: #f4f4f5;
+  --color-zinc-800: #e4e4e7;
+  --color-zinc-700: #d4d4d8;
+  --color-zinc-600: #9f9fa9;
+  --color-zinc-500: #71717b;
+  --color-zinc-400: #52525c;
+  --color-zinc-300: #3f3f46;
+  --color-zinc-200: #27272a;
+  --color-zinc-100: #18181b;
+  --color-zinc-50: #09090b;
+
+  --color-accent: #0b6bcb;
+  --color-accent-dim: #7db4e8;
+  --color-emerald-300: #047857;
+  /* API panel strings + status chip */
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  color-scheme: dark;
+}
+
+body {
+  background: var(--color-zinc-950);
+  color: var(--color-zinc-200);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--color-accent) 35%, transparent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* One orchestrated moment: the API response prints line by line on load. */
+@keyframes line-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.line-in {
+  opacity: 0;
+  animation: line-in 0.35s ease-out forwards;
+}
+
+@keyframes tagline-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.tagline-in {
+  animation: tagline-in 0.4s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .line-in {
+    opacity: 1;
+    animation: none;
+  }
+
+  .tagline-in {
+    animation: none;
+  }
+
+  * {
+    transition-duration: 0.01ms !important;
+  }
+}
